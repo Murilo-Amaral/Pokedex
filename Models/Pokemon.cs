@@ -7,13 +7,15 @@ namespace Login01.Models
         [Key, Display(Name = "Nº")]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Insira o nome do Pokemon!"), Display(Name = "Nome")]
+        [Required(ErrorMessage = "Insira o nome do Pokemon!")]
+        [Display(Name = "Nome")]
         public string Name { get; set; }
 
         [Display(Name = "Descrição")]
         public string? Description { get; set; }
 
-        [Required(ErrorMessage = "Insira o tipo do Pokemon!"), Display(Name = "Tipo")]
+        [Required(ErrorMessage = "Selecione o tipo do Pokemon!")]
+        [Display(Name = "Tipo")]
         public string Type { get; set; }
 
         [Display(Name = "Altura")]

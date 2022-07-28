@@ -48,14 +48,19 @@ namespace Login01.Controllers
         {
             IFormFile img = Img.FirstOrDefault();
             MemoryStream ms = new MemoryStream();
-            if(Img.Count > 0)
+            if (Img.Count > 0)
             {
                 img.OpenReadStream().CopyTo(ms);
                 pokemon.Image = ms.ToArray();
             }
-            _appCont.Pokemons.Add(pokemon);
-            await _appCont.SaveChangesAsync();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _appCont.Pokemons.Add(pokemon);
+                await _appCont.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(pokemon);
+
         }
 
         [HttpGet]
@@ -66,7 +71,7 @@ namespace Login01.Controllers
                 return NotFound();
             }
 
-            var Poke= await _appCont.Pokemons.FirstOrDefaultAsync(x => x.Id == id);
+            var Poke = await _appCont.Pokemons.FirstOrDefaultAsync(x => x.Id == id);
 
             if (Poke == null)
             {
@@ -87,7 +92,7 @@ namespace Login01.Controllers
             var oldData = _appCont.Pokemons.AsNoTracking().FirstOrDefault(p => p.Id == id);
             IFormFile newImg = Image.FirstOrDefault();
             MemoryStream ms = new MemoryStream();
-            if(Image.Count > 0)
+            if (Image.Count > 0)
             {
                 newImg.OpenReadStream().CopyTo(ms);
                 pokemon.Image = ms.ToArray();
@@ -96,7 +101,7 @@ namespace Login01.Controllers
             {
                 pokemon.Image = oldData.Image;
             }
-            
+
             if (ModelState.IsValid)
             {
                 _appCont.Update(pokemon);

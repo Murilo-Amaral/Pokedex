@@ -3,16 +3,19 @@
     ViewBag.Title = "Pokedex";
 }
 <style>
-    h5{
-        margin-top:25px;
-        margin-left:-45px;
-        margin-right:-45px;
+
+    #imgPoke {
+        max-width: 80px
+    }
+
+    #cardPoke {
+        height: 500px
     }
 </style>
 <div class="container-fluid">
     <!--Cabeçalho da página-->
-    <h1 class="h5 mb-2  text-danger">Pokedex</h1>
-    <div style="margin:10px"><a class="btn btn-danger btn-sm" asp-action="Create" asp-route-id="">Adicionar Pokemon</a></div>
+    <h1 class="h5 mb-2  text-danger" style="margin-top:25px;">Pokedex</h1>
+    <h1 class="mb-4 text-black-50">Seus Pokemon</h1>
     <!--Card-->
     <div class="row">
         @foreach (var i in Model)
@@ -20,7 +23,7 @@
             if (i.Type == "Fogo")
             {
                 <div class="col-md-3">
-                    <div class="card shadow border-bottom-danger mb-4">
+                    <div id="cardPoke" class="card shadow border-bottom-danger mb-4">
                         <div class="card-header py-3">
                             <a class="m-0 font-weight-bold text-danger" asp-action="Details" asp-route-id="@i.Id"> @i.Name   N°: @i.Id</a>
                         </div>
@@ -32,14 +35,23 @@
                                     if (!string.IsNullOrEmpty(base64))
                                     {
                                         var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                                        <img class="img-fluid" src="@imgSrc" style="width:75px height:75px" />
+                                        <img id="imgPoke" class="img-fluid" src="@imgSrc" />
                                     }
                                 }
                                 catch
                                 {
                                     <img class="img-fluid" src="http://www.puspfc.usp.br/sistemas/prefeitura/imgs/sem_foto.png" width="70" />
                                 }
-                                <h5 style="margin-left:-45px; margin-right:-45px">@i.Description ... <a class="m-0" asp-action="Details" asp-route-id="@i.Id"> mais </a></h5>
+                                <h5 style="margin-left:-45px; margin-right:-45px">
+                                    @if (i.Description is not null)
+                                    {
+                                        @i.Description <a class="m-0" asp-action="Details" asp-route-id="@i.Id"> mais </a>
+                                    }
+                                    else
+                                    {
+                                        <p style="margin-top: 50px">Sem Descrição</p>
+                                    }
+                                </h5>
                                 <h5 class="text-danger">@i.Type</h5>
                             </div>
                         </div>
@@ -48,8 +60,8 @@
             }
             else if (i.Type == "Elétrico")
             {
-                <div class="col-md-3" style="width:75px height:75px">
-                    <div class="card shadow border-bottom-warning mb-4">
+                <div class="col-md-3">
+                    <div id="cardPoke" class="card shadow border-bottom-warning mb-4">
                         <div class="card-header py-3">
                             <a class="m-0 font-weight-bold text-warning" asp-action="Details" asp-route-id="@i.Id"> @i.Name   N°: @i.Id </a>
                         </div>
@@ -61,14 +73,17 @@
                                     if (!string.IsNullOrEmpty(base64))
                                     {
                                         var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                                        <img class="img-fluid" src="@imgSrc" style="width:75px height:75px" />
+                                        <img id="imgPoke" class="img-fluid" src="@imgSrc" />
                                     }
                                 }
                                 catch
                                 {
                                     <img class="img-fluid" src="http://www.puspfc.usp.br/sistemas/prefeitura/imgs/sem_foto.png" width="70" />
                                 }
-                                <h5 style="margin-left:-45px; margin-right:-45px">@i.Description  ... <a class="m-0" asp-action="Details" asp-route-id="@i.Id"> mais </a></h5>
+                                <h5 style="margin-left:-45px; margin-right:-45px">@if (i.Description is not null)
+                                    {
+                                        @i.Description <a class="m-0" asp-action="Details" asp-route-id="@i.Id"> mais </a>
+                                    } </h5>
                                 <h5 class="text-warning">@i.Type</h5>
                             </div>
                         </div>
@@ -78,7 +93,7 @@
             else if (i.Type == "Água")
             {
                 <div class="col-md-3" style="width:75px height:75px">
-                    <div class="card shadow border-bottom-primary mb-4">
+                    <div id="cardPoke" class="card shadow border-bottom-primary mb-4">
                         <div class="card-header py-3">
                             <a class="m-0 font-weight-bold text-primary" asp-action="Details" asp-route-id="@i.Id"> @i.Name   N°: @i.Id</a>
                         </div>
@@ -90,14 +105,17 @@
                                     if (!string.IsNullOrEmpty(base64))
                                     {
                                         var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                                        <img class="img-fluid" src="@imgSrc" style="width:75px height:75px" />
+                                        <img id="imgPoke" class="img-fluid" src="@imgSrc" />
                                     }
                                 }
                                 catch
                                 {
                                     <img class="img-fluid" src="http://www.puspfc.usp.br/sistemas/prefeitura/imgs/sem_foto.png" width="70" />
                                 }
-                                <h5 style="margin-left:-45px; margin-right:-45px">@i.Description ... <a class="m-0" asp-action="Details" asp-route-id="@i.Id"> mais </a></h5>
+                                <h5 style="margin-left:-45px; margin-right:-45px">@if (i.Description is not null)
+                                    {
+                                        @i.Description <a class="m-0" asp-action="Details" asp-route-id="@i.Id"> mais </a>
+                                    } </h5>
                                 <h5 class="text-primary">@i.Type</h5>
                             </div>
                         </div>
@@ -107,7 +125,7 @@
             else if (i.Type == "Grama")
             {
                 <div class="col-md-3" style="width:75px height:75px">
-                    <div class="card shadow border-bottom-success mb-4">
+                    <div id="cardPoke" class="card shadow border-bottom-success mb-4">
                         <div class="card-header py-3">
                             <a class="m-0 font-weight-bold text-success" asp-action="Details" asp-route-id="@i.Id"> @i.Name   N°: @i.Id</a>
                         </div>
@@ -119,14 +137,17 @@
                                     if (!string.IsNullOrEmpty(base64))
                                     {
                                         var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                                        <img class="img-fluid" src="@imgSrc" style="width:75px height:75px" />
+                                        <img id="imgPoke" class="img-fluid" src="@imgSrc" />
                                     }
                                 }
                                 catch
                                 {
                                     <img class="img-fluid" src="http://www.puspfc.usp.br/sistemas/prefeitura/imgs/sem_foto.png" width="70" />
                                 }
-                                <h5 style="margin-left:-45px; margin-right:-45px">@i.Description ... <a class="m-0" asp-action="Details" asp-route-id="@i.Id"> mais </a></h5>
+                                <h5 style="margin-left:-45px; margin-right:-45px">@if (i.Description is not null)
+                                    {
+                                        @i.Description <a class="m-0" asp-action="Details" asp-route-id="@i.Id"> mais </a>
+                                    } </h5>
                                 <h5 class="text-success">@i.Type</h5>
                             </div>
                         </div>

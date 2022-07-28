@@ -1,0 +1,158 @@
+﻿@model Login01.Models.Pokemon
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+<style>
+    h5{
+        margin-top:25px
+    }
+</style>
+
+<h1>Detalhes do Pokemon </h1>
+<hr />
+<div class="row">
+    @if(@Model.Type == "Fogo")
+    {
+        <div class="col-md-6">
+            <div class="card shadow border-bottom-danger mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-danger"> @Model.Name N°: @Model.Id</h6>
+                </div>
+                <div class="card-body d-flex">
+                    <div class="m-5">
+                        @try
+                        {
+                            var base64 = Convert.ToBase64String(@Model.Image);
+                            if (!string.IsNullOrEmpty(base64))
+                            {
+                                var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                                <img class="img-fluid" src="@imgSrc" style="width:125px height:125px" />
+                            }
+                        }
+                        catch
+                        {
+                            <img class="img-fluid" src="http://www.puspfc.usp.br/sistemas/prefeitura/imgs/sem_foto.png" width="70" />
+                        }
+                        
+                        <h5>Descrição: @Model.Description</h5>
+                        <h5>Tipo: @Model.Type</h5>
+                        <h5>Genero: @Model.Gender</h5>
+                        <h5>Altura (Metros): @Model.Height</h5>
+                        <h5>Peso (Gramas): @Model.Width </h5>
+                        <h5>Habilidades: @Model.Abilities</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }else if(@Model.Type == "Água")
+    {
+        <div class="col-md-6">
+            <div class="card shadow border-bottom-primary mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary"> @Model.Name N°: @Model.Id</h6>
+                </div>
+                <div class="card-body d-flex">
+                    <div class="m-5">
+                        @try
+                        {
+                            var base64 = Convert.ToBase64String(@Model.Image);
+                            if (!string.IsNullOrEmpty(base64))
+                            {
+                                var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                                <img class="img-fluid" src="@imgSrc" style="width:125px height:125px" />
+                            }
+                        }
+                        catch
+                        {
+                            <img class="img-fluid" src="http://www.puspfc.usp.br/sistemas/prefeitura/imgs/sem_foto.png" width="70" />
+                        }
+                        <h5>Descrição: @Model.Description</h5>
+                        <h5>Tipo: @Model.Type</h5>
+                        <h5>Genero: @Model.Gender</h5>
+                        <h5>Altura (Metros): @Model.Height</h5>
+                        <h5>Peso (Gramas): @Model.Width </h5>
+                        <h5>Habilidades: @Model.Abilities</h5>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    }else if(@Model.Type == "Grama")
+    {
+        <div class="col-md-6">
+            <div class="card shadow border-bottom-success mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-success"> @Model.Name N°: @Model.Id</h6>
+                </div>
+                <div class="card-body d-flex">
+                    <div class="m-5">
+                        @try
+                        {
+                            var base64 = Convert.ToBase64String(@Model.Image);
+                            if (!string.IsNullOrEmpty(base64))
+                            {
+                                var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                                <img class="img-fluid" src="@imgSrc" style="width:125px height:125px" />
+                            }
+                        }
+                        catch
+                        {
+                            <img class="img-fluid" src="http://www.puspfc.usp.br/sistemas/prefeitura/imgs/sem_foto.png" width="70" />
+                        }
+                        <h5>Descrição: @Model.Description</h5>
+                        <h5>Tipo: @Model.Type</h5>
+                        <h5>Genero: @Model.Gender</h5>
+                        <h5>Altura (Metros): @Model.Height</h5>
+                        <h5>Peso (Gramas): @Model.Width </h5>
+                        <h5>Habilidades: @Model.Abilities</h5>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    }else if(@Model.Type == "Elétrico")
+    {
+        <div class="col-md-5">
+            <div class="card shadow border-bottom-warning mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-warning"> @Model.Name N°: @Model.Id</h6>
+                </div>
+                <div class="card-body d-flex">
+                    <div class="m-5">
+                        @try
+                        {
+                            var base64 = Convert.ToBase64String(@Model.Image);
+                            if (!string.IsNullOrEmpty(base64))
+                            {
+                                var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                                <img class="img-fluid" src="@imgSrc" style="width:125px height:125px" />
+                            }
+                        }
+                        catch
+                        {
+                            <img class="img-fluid" src="http://www.puspfc.usp.br/sistemas/prefeitura/imgs/sem_foto.png" width="70" />
+                        }
+                        <h5>Descrição: @Model.Description</h5>
+                        <h5>Tipo: @Model.Type</h5>
+                        <h5>Genero: @Model.Gender</h5>
+                        <h5>Altura (Metros): @Model.Height</h5>
+                        <h5>Peso (Gramas): @Model.Width </h5>
+                        <h5>Habilidades: @Model.Abilities</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <center>
+    <div class="col-md-3" style="margin-left:100px">
+         <a style="margin-top:250px" class="btn btn-primary btn-lg" asp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+    </div>
+    <div class="col-md-3" style="margin-left:100px">
+         <a style="margin-top:25px" class="btn btn-danger btn-lg" asp-action="Delete" asp-route-id="@Model.Id">Deletar</a>
+    </div>
+    <div class="col-md-3" style="margin-left:100px">
+         <a style="margin-top:25px" class="btn btn-secondary btn-lg" asp-action="Index">Voltar</a>
+    </div>
+    </center>
+</div>

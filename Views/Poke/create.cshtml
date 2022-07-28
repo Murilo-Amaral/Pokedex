@@ -1,0 +1,70 @@
+﻿@model Login01.Models.Pokemon
+
+
+
+@{
+    ViewData["Title"] = "Adicionar Pokemon";
+}
+<h1>Inserção do Pokemon</h1>
+<hr />
+<div class="row">
+    <div class="col-md-2">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="margin-top:15px;">
+                <label asp-for="Type" class="control-label"></label>
+                <select class="custom-select" asp-for="Type">
+                    <option selected>Tipo...</option>
+                    <option value="Fogo">Fogo</option>
+                    <option value="Água">Água</option>
+                    <option value="Grama">Grama</option>
+                    <option value="Elétrico">Elétrico</option>
+                </select>
+            </div>
+            <div class="form-group" style="margin-top:15px;">
+                <label asp-for="Abilities" class="control-label"></label>
+                <input asp-for="Abilities" class="form-control" />
+
+            </div>
+            <div class="form-group" style="margin-top:15px;">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+
+            </div>
+            <div class="form-group" style="margin-top:15px;">
+                <label asp-for="Gender" class="control-label"></label>
+                <select class="custom-select" asp-for="Gender">
+                    <option selected>Gênero...</option>
+                    <option value="Macho">Macho</option>
+                    <option value="Fêmea">Fêmea</option>
+                </select>
+
+            </div>
+            <div class="form-group" style="margin-top:15px;">
+                <label asp-for="Height" class="control-label"></label>
+                <input asp-for="Height" class="form-control" />
+
+            </div>
+            <div class="form-group" style="margin-top:15px;">
+                <label asp-for="Width" class="control-label"></label>
+                <input asp-for="Width" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" type="file" id="Img" name="Img" />
+            </div>
+            <br />
+
+            <div class="form-group">
+                <input type="submit" value="Adicionar Pokemon" class="btn btn-primary btn-sm" />
+                <a class="btn btn-secondary text-white btn-sm" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
